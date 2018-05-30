@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller(value = "/blog")
+@Controller
 public class BlogController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class BlogController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping(value="/")
     public String posts(ModelMap modelMap) {
         List<Post> posts = postService.findAll();
         modelMap.put("posts", posts);
@@ -30,20 +30,15 @@ public class BlogController {
     }
 
     //TODO
-    @GetMapping(value="/create")
-    public String showNewPostPage(@AuthenticationPrincipal CustomUserDetailsService userDetails) {
-
+    @GetMapping(value="/post/create")
+    public String showNewPostPage() {
         return "create_post";
     }
 
-    @PostMapping
-    public String publishPost(@RequestBody Post post, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        // Retrieve logged in user
-//        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        post.setCreator(userService.findById(userDetails.getId()));
-
+    @PostMapping("/post/create")
+    public String publishPost(Post post, @AuthenticationPrincipal CustomUserDetails userDetails) {
         postService.create(post, userService.findByUsername(userDetails.getUsername()));
-        return "index";
+        return "redirect:/";
     }
 
 

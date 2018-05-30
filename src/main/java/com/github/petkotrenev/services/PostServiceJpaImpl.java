@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,6 +38,7 @@ public class PostServiceJpaImpl implements PostService{
     @Override
     public void create(Post post, User user) {
         post.setCreator(user);
+        post.setCreationDate(LocalDate.now());
         create(post);
     }
 

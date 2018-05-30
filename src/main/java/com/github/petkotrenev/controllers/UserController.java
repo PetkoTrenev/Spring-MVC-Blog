@@ -13,36 +13,40 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Controller("/users")
+@Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/register")
+    @GetMapping("/users/register")
     public String register() {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method=RequestMethod.POST)
-    public String register(@RequestParam("username") String username, @RequestParam("password") String password) {
-        Set<Role> roles = null;
+    @PostMapping(value = "/users/register")
+    public String register(@RequestParam("username") String username,
+                           @RequestParam("password") String password,
+                            @RequestParam("firstname") String firstName,
+                            @RequestParam("lastname") String lastName) {
+        Set<Role> roles = new HashSet<>();
         roles.add(new Role("ADMIN"));
         roles.add(new Role("USER"));
-        userService.create(new User(username, password, roles));
+        userService.create(new User(username, password, firstName, lastName, roles));
         return "login";
     }
 
-    @RequestMapping(value="/login")
+    @RequestMapping(value="/users/login")
     public String login() {
         return "login";
     }
 
     //TODO: Only for admin
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "/users/list")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String getUsers(ModelMap modelMap, @AuthenticationPrincipal UserDetails viewer) {
         List<User> users = userService.findAll();

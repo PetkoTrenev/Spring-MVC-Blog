@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog
+    username: root
+    password: p3tkotrenev
+    platform: mssql
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: create-drop
+  application:
+    name: Vanilla
+security:
+  user:
+    password: password
+  oauth2:
+    resource:
+      filter-order: 3
