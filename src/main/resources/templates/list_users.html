@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="UTF-8"/>
+    <title>Spring MVC  Blog Application</title>
+</head>
+<body>
+<h1>Hello</h1>
+<div class="container">
+    <ul class="list-group" th:each="user : ${users}">
+        <li class="list-group-item" th:text="${user.username}"></li>
+        <li class="list-group-item" th:text="${user.password}">post.content</li>
+    </ul>
+</div>
+</body>
+</html>

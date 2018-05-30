@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="UTF-8"/>
+    <title>Spring MVC  Blog Application</title>
+</head>
+
+<body>
+    <form method="post" th:action="@{/post}">
+        <h1> Populate The Post </h1>
+        <label>Title</label>
+        <input type="text" id="title" name="title">
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="UTF-8"/>
+    <title>Spring MVC  Blog Application</title>
+</head>
+<body>
+<h1>HelloWorld</h1>
+    <form th:action="@{/blog}" th:method="get">
+        <div class="container">
+            <ul class="list-group" th:each="post : ${posts}">
+                <li class="list-group-item" th:text="${post.title}"></li>
+                <li class="list-group-item" th:text="${post.content}">post.content</li>
+            </ul>
+
+            <button type="submit" value="Submit"></button>
+        </div>
+    </form>
+</body>
+</html>
