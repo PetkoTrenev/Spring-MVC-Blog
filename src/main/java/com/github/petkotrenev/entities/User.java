@@ -31,9 +31,11 @@ public class User {
 
     User() {}
 
-    public User(String username, String password, Set<Role> roles) {
+    public User(String username, String password, String firstName, String lastName, Set<Role> roles) {
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roles = roles;
     }
 
@@ -43,6 +45,7 @@ public class User {
         this.password = user.getPassword();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+        this.roles = user.getRoles();
     }
 
     public String getFirstName() {
