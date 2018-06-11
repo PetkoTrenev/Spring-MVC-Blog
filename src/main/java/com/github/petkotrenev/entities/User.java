@@ -29,6 +29,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<Role> roles;
 
+
     User() {}
 
     public User(String username, String password, String firstName, String lastName, Set<Role> roles) {

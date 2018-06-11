@@ -1,6 +1,7 @@
 package com.github.petkotrenev.entities;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -21,7 +22,30 @@ public class Post {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User creator;
 
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
+    private User lastLockedBy;
+
+    @Column(nullable = true)
+    private Instant lockTimestamp;
+
+
     public Post() {
+    }
+
+    public User getLastLockedBy() {
+        return lastLockedBy;
+    }
+
+    public void setLastLockedBy(User lastLockedBy) {
+        this.lastLockedBy = lastLockedBy;
+    }
+
+    public Instant getLockTimestamp() {
+        return lockTimestamp;
+    }
+
+    public void setLockTimestamp(Instant lockTimestamp) {
+        this.lockTimestamp = lockTimestamp;
     }
 
     public User getCreator() {
