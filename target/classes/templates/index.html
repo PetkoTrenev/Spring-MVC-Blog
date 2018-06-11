@@ -11,8 +11,7 @@
         <div class="container">
             <div class="form-group">
                 <ul class="list-group" th:each="post : ${posts}">
-                    <li class="list-group-item" th:text="${post.title}"></li>
-                    <li class="list-group-item" th:text="${post.content}"></li>
+                    <a th:href="@{/post/{id}/(id=${post.id})}"><li class="list-group-item" th:text="${post.title}"></li></a>
                 </ul>
                 <br/>
 

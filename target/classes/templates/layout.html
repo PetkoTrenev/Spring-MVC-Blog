@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="site-head">
     <meta charset="UTF-8" />
-    <script type="text/javascript" src="webjars/jquery/3.3.0/jquery.min.js"></script>
-    <script type="text/javascript" src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="webjars/bootstrap/4.1.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
-    <link rel="icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
-    <link href="../static/css/spring-core.css"
-          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
-    <link href="/static/css/blog-post.css" rel="stylesheet"/>
-    <script src="../static/js/jquery-3.1.0.min.js" th:src="@{/js/jquery-3.1.0.min.js}"></script>
-    <script src="../static/js/blog-scripts.js" th:src="@{/js/blog-scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/styles.css}" />
+    <link rel="icon"       th:href="@{/static/img/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/static/css/spring-core.css}"  media="screen"/>
+    <link rel="stylesheet" th:href="@{/static/css/blog-post.css}" />
+    <script th:src="@{/static/js/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{/static/js/blog-scripts.js}"></script>
     <meta th:include="this :: head" th:remove="tag"/>
 </head>
 <body>
@@ -32,7 +31,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a href="index.html" th:href="@{/}"><img src="../static/img/site-logo.png" th:src="@{/img/site-logo.png}" class="navbar-brand"/></a>
+            <a href="index.html" th:href="@{/}"><img th:src="@{/static/img/site-logo.png}" class="navbar-brand"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

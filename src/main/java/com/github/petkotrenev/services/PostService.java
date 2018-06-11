@@ -13,13 +13,18 @@ public interface PostService {
 
     Post findById(Long id);
 
-    void create(Post post);
+    Post create(Post post);
 
-    void create(Post post, User user);
+    Post create(Post post, User user);
 
-    void edit(Post post);
+    Post update(Post post);
 
     void deleteById(Long id);
 
 
+    Post lockForUser(Post post, User user);
+
+    Post unlock(Post post);
+
+    boolean isPostLockedForUser(Post post, User currentUser);
 }
