@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +19,18 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users/register")
+    @GetMapping("/register")
     public String register() {
         return "register";
     }
 
-    @PostMapping(value = "/users/register")
+    @PostMapping(value = "/register")
     public String register(@RequestParam("username") String username,
                            @RequestParam("password") String password,
                             @RequestParam("firstname") String firstName,
@@ -40,13 +42,19 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value="/users/login")
+    @RequestMapping(value="/login")
     public String login() {
         return "login";
     }
 
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login.html";
+    }
+
     //TODO: Only for admin
-    @RequestMapping(value = "/users/list")
+    @RequestMapping(value = "/list")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String getUsers(ModelMap modelMap, @AuthenticationPrincipal UserDetails viewer) {
         List<User> users = userService.findAll();

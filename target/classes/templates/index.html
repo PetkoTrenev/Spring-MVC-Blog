@@ -1,23 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th ="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: site-head">
     <meta charset="UTF-8"/>
-    <title>Spring MVC  Blog Application</title>
+    <title>Spring MVC Blog Application</title>
 </head>
 <body>
-<header th:replace = "layout :: site-header"></header>
+<header th:replace="layout :: site-header"></header>
 <h1>Blog</h1>
-    <form th:action="@{/}" th:method="get">
-        <div class="container">
-            <div class="form-group">
-                <ul class="list-group" th:each="post : ${posts}">
-                    <a th:href="@{/post/{id}/(id=${post.id})}"><li class="list-group-item" th:text="${post.title}"></li></a>
-                </ul>
-                <br/>
+<form th:action="@{/}" th:method="get">
+    <div class="container">
+        <div class="col-md-6">
+            <ul class="list-group" th:each="post : ${posts}">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <h3 class="mb-0">
+                            <a class="text-dark" th:href="@{/post/{id}/(id=${post.id})}" th:text="${post.title}"></a>
+                        </h3>
+                        <div class="mb-1 text-muted" th:text="${post.creationDate}"></div>
+                        <li class="list-group-item" th:text="${post.content}">
 
-                <button type="button" class="btn btn-primary">Click to post</button>
-            </div>
+                        </li>
+                        <br/>
+                        <a class="text-primary" th:href="@{/post/{id}/(id=${post.id})}">more details..</a>
+                    </div>
+                </div>
+            </ul>
+            <br/>
         </div>
-    </form>
+    </div>
+</form>
 </body>
 </html>
+
+<!--<div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">World</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">Featured post</a>
+                    </h3>
+                    <div class="mb-1 text-muted">Nov 12</div>
+                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#">Continue reading</a>
+                </div>
+                <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap"/>
+            </div>
+        </div>-->

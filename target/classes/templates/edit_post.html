@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th ="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: site-head">
     <meta charset="UTF-8"/>
-    <title>Spring MVC  Blog Application</title>
+    <title>Spring MVC Blog Application</title>
 </head>
 <body>
-<header th:replace = "layout :: site-header"></header>
-    <form method="post" th:action="@{/post/edit/{id}/(id=${post.id})}">
-        <h1> Edit The Post </h1>
+<header th:replace="layout :: site-header"></header>
+<form method="post" th:action="@{/post/edit/{id}/(id=${post.id})}">
+    <h1>Edit Post Page</h1>
+    <div class="md-form form-group mt-5">
+        <label for="formGroupExampleInputMD">Title</label>
+        <input type="text" class="form-control" id="formGroupExampleInputMD" name="title" th:value="${post.title}"/>
+    </div>
+    <!-- Material input -->
+    <div class = "md-form form-group mt-5">
+        <label for="formGroupExampleInput2MD">Content</label>
+        <textarea type="text" name="content" class="form-control" id="formGroupExampleInput2MD"
+                  placeholder="Content" th:text="${post.content}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
 
-        <label>Title</label>
-        <input type="text" id="title" name="title" th:value="${post.title}"/>
-
-        <label>Content</label>
-        <textarea name="content" th:text="${post.content}"></textarea>
-
-        <button type="submit">Save</button>
-    </form>
+</form>
 </body>
 </html>

@@ -40,7 +40,7 @@ public class BlogController {
     @PostMapping("/post/create")
     public String publishPost(Post post, @AuthenticationPrincipal CustomUserDetails userDetails) {
         Post newPost = postService.create(post, userService.findByUsername(userDetails.getUsername()));
-        return "redirect:/" + newPost.getId();
+        return "redirect:/";
     }
 
     @GetMapping("/post/{id}")
