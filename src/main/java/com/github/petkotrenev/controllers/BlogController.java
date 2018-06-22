@@ -63,7 +63,7 @@ public class BlogController {
 
         if (postService.isPostLockedForUser(post, currentUser)) {
             // TODO Make error page that says post is locked
-            return "redirect:/post_is_locked_error";
+            return "redirect:/post_locked";
         }
 
         post = postService.lockForUser(post, currentUser);
@@ -84,7 +84,7 @@ public class BlogController {
         if (postService.isPostLockedForUser(post, currentUser)) {
             // TODO Make error page that says post is locked
             redirectAttributes.addFlashAttribute("cannot", "currently unavailable");
-            return "redirect:/post_is_locked_error";
+            return "redirect:/post_locked";
         }
 
         postFromDb.setTitle(post.getTitle());
